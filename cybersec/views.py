@@ -31,7 +31,6 @@ def submit_flag(request):
         else:
             # flag is invalid - return JSON with valid false
             return JsonResponse({'valid': False})
-
     else:
         return HttpResponseRedirect(reverse_lazy('index'))
 
