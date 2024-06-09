@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">{{ category.name }}</h1>
+    <p>{{ category.description }}</p>
+    <h2 class="mt-4">Challenges</h2>
+    <div class="row">
+        {% for challenge in category.challenges.all %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ challenge.name }}</h5>
+                    <p class="card-text">{{ challenge.description }}</p>
+                    <a href="{% url 'challenge-detail' challenge.id %}" class="btn btn-primary">View Challenge</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

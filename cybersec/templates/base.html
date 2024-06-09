@@ -1,27 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Cybersecurity CTF platform{% endblock %}</title>
-    <!-- Bootstrap CSS -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Platform</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </head>
 <body>
-    <!-- Záhlaví -->
-     {% include 'page/header.html' %}
-    <!-- Navigace -->
-    {% include 'page/navbar.html' %}
-    <!-- Obsah stránky -->
-    <main class="container">
-    {% block content %}{% endblock %}
-    </main>
-    <!-- Zápatí -->
-     {% include 'page/footer.html' %}
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    {% include "page/navbar.html" %}
+    {% include "page/header.html" %}
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include "page/footer.html" %}
+    <script src="{% static 'js/flag_submission.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">{{ challenge.name }}</h1>
+    <p>{{ challenge.description }}</p>
+    <h2>Details</h2>
+    <ul>
+        <li>Score: {{ challenge.score }}</li>
+        <li>Difficulty: {{ challenge.difficulty }}</li>
+    </ul>
+
+    {% if challenge.cve.exists %}
+    <h3>CVEs</h3>
+    <ul>
+        {% for cve in challenge.cve.all %}
+        <li>{{ cve.cve_id }}: {{ cve.description }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if challenge.cwe.exists %}
+    <h3>CWEs</h3>
+    <ul>
+        {% for cwe in challenge.cwe.all %}
+        <li>{{ cwe.cwe_id }}: {{ cwe.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div id="alertBox" class="alert" style="display: none;"></div>
+
+    {% for flag in challenge.flags.all %}
+    <div class="flag-section">
+        <h4>{{ flag.flag }}</h4>
+        <p>{{ flag.hint }}</p>
+        <form class="flagForm" method="post" action="{% url 'flag_submit' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="flag_{{ flag.id }}" class="form-label">Submit Flag</label>
+                <input type="text" class="form-control" id="flag_{{ flag.id }}" name="flag" required>
+                <input type="hidden" name="flag_id" value="{{ challenge.id }}_{{ flag.flag }}">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <hr class="my-4">
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

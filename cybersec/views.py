@@ -17,6 +17,10 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def category_redirect(request):
+    return HttpResponseRedirect(reverse_lazy('index'))
+
+
 def submit_flag(request):
     if request.method == 'POST':
         flag = request.POST.get('flag')
@@ -34,12 +38,6 @@ def submit_flag(request):
     else:
         return HttpResponseRedirect(reverse_lazy('index'))
 
-class CategoryListView(ListView):
-    model = Category
-    template_name = 'category_list.html'
-    context_object_name = 'categories'
-    ordering = ['name']
-    paginate_by = 10
 
 class CategoryDetailView(DetailView):
     model = Category

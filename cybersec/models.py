@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.translation import gettext_lazy as _
 
 # app for ctf-like challenges with cve, cwe filtering and an exploit database and with player support
 
@@ -41,12 +43,25 @@ class Exploit(models.Model):
         return f"{self.name}"
 
 class Challenge(models.Model):
+    class Difficulites(models.TextChoices):
+        EASY = 'EASY', _('Easy')
+        MEDIUM = 'MEDIUM', _('Medium')
+        HARD = 'HARD', _('Hard')
     category = models.ForeignKey('Category', on_delete=models.RESTRICT, related_name='challenges')
     cve = models.ManyToManyField('Cve', blank=True)
     cwe = models.ManyToManyField('Cwe', blank=True)
     image = models.ImageField(upload_to='images/', verbose_name='Image', null=True, blank=True)
-    score = models.PositiveIntegerField()
-    difficulty = models.PositiveIntegerField()
+    score = models.IntegerField(default=100,
+                                        validators=[
+                                            MinValueValidator(1),
+                                            MaxValueValidator(100),
+                                            ])
+
+    difficulty = models.CharField(
+        max_length=6,
+        choices=Difficulites.choices,
+        default=Difficulites.EASY,
+    )
 
     name = models.CharField(max_length=100)
     description = models.TextField()
