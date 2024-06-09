@@ -13,7 +13,7 @@ class Cve(models.Model):
     class Meta:
         ordering = ['cve_id']
         verbose_name = 'CVE'
-        verbose_name = 'CVEs'
+        verbose_name_plural  = 'CVEs'
     def __str__(self):
         return f"{self.cve_id}"
 
@@ -24,7 +24,7 @@ class Cwe(models.Model):
     class Meta:
         ordering = ['cwe_id']
         verbose_name = 'CWE'
-        verbose_name = 'CWEs'
+        verbose_name_plural = 'CWEs'
     def __str__(self):
         return f"{self.cwe_id}: {self.name}"
 
@@ -36,7 +36,7 @@ class Exploit(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name = 'Exploit'
-        verbose_name = 'Exploits'
+        verbose_name_plural  = 'Exploits'
     def __str__(self):
         return f"{self.name}"
 
@@ -54,7 +54,7 @@ class Challenge(models.Model):
     class Meta:
         ordering = ['category', 'name']
         verbose_name = 'Challenge'
-        verbose_name = 'Challenges'
+        verbose_name_plural  = 'Challenges'
     def __str__(self):
         return f"{self.name}"
 
@@ -65,7 +65,7 @@ class Flag(models.Model):
     class Meta:
         ordering = ['flag']
         verbose_name = 'Flag'
-        verbose_name = 'Flags'
+        verbose_name_plural  = 'Flags'
     def __str__(self):
         return f"{self.flag}"
 
@@ -76,7 +76,7 @@ class Category(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name = 'Category'
-        verbose_name = 'Categories'
+        verbose_name_plural  = 'Categories'
     def __str__(self):
         return f"{self.name}"
 

@@ -1,20 +1,39 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 # Import metody render pro vykreslení šablon
 from django.shortcuts import render
 from django.urls import reverse_lazy
 # Import generických tříd ListView a DetailView z modulu django.views.generic
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .models import Cve, Cwe, Category, Challenge, Exploit
+from .models import Cve, Cwe, Category, Challenge, Exploit, Flag
 
 # Create your views here.
 def index(request):
     context = {
+            'categories': Category.objects.all(),
     }
     return render(request, 'index.html', context=context)
+
+def submit_flag(request):
+    if request.method == 'POST':
+        flag = request.POST.get('flag')
+        flag_id = request.POST.get('flag_id')
+        # flag id is challengeid_flagname
+        flag_id = flag_id.split('_')
+        challenge = Challenge.objects.get(id=flag_id[0])
+        valid_flags = Flag.objects.filter(challenge=challenge)
+        if flag in [f.flag for f in valid_flags]:
+            # flag is valid - return JSON with valid true
+            return JsonResponse({'valid': True})
+        else:
+            # flag is invalid - return JSON with valid false
+            return JsonResponse({'valid': False})
+
+    else:
+        return HttpResponseRedirect(reverse_lazy('index'))
 
 class CategoryListView(ListView):
     model = Category

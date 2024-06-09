@@ -27,4 +27,5 @@ urlpatterns = [
     path('exploit/create/', views.ExploitCreateView.as_view(), name='exploit_create'),
     path('exploit/<int:pk>/update/', views.ExploitUpdateView.as_view(), name='exploit_update'),
     path('exploit/<int:pk>/delete/', views.ExploitDeleteView.as_view(), name='exploit_delete'),
+    path('flag/submit', views.submit_flag, name='flag_submit'),
 ]

@@ -7,7 +7,7 @@
             {% for category in categories %}
             <div class="row mb-3">
                 <div class="col-lg-3">
-                    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-fluid">
+                    {{ category }}
                 </div>
                 <div class="col-lg-9">
                     <p>{% for challenge in category.challenges.all %}<span class="badge badge-light">{{ challenge.name }}</span>{% endfor %}</p>
