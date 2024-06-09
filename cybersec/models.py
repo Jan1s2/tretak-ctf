@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 class Cve(models.Model):
     cve_id = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    cvss = models.FloatField(blank=True, null=True)
+    cvss = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(10)])
     published_date = models.DateField(blank=True, null=True)
     cwe = models.ManyToManyField('Cwe')
     class Meta:
