@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>Writeup Deletion</h1>
+    <p>Do you truly want to delete a writeup for challenge "{{ writeup.challenge.name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+    </form>
+{% endblock %}

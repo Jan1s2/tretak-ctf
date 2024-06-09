@@ -32,9 +32,31 @@
 
     {% for flag in challenge.flags.all %}
     <div class="flag-section">
-        <h4>{{ flag.flag }}</h4>
-        <p>{{ flag.hint }}</p>
-        <form class="flagForm" method="post" action="{% url 'flag_submit' %}">
+        <h3>Flag {{ flag.id }}</h3>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#hintModal_{{ flag.id }}">
+            Show Hint
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="hintModal_{{ flag.id }}" tabindex="-1" aria-labelledby="hintModalLabel_{{ flag.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hintModalLabel_{{ flag.id }}">Hint for Flag {{ flag.id }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ flag.hint }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form class="flagForm mt-3" method="post" action="{% url 'flag_submit' %}">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="flag_{{ flag.id }}" class="form-label">Submit Flag</label>

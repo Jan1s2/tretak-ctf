@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 # Import generických tříd ListView a DetailView z modulu django.views.generic
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .models import Cve, Cwe, Category, Challenge, Exploit, Flag
+from .models import Cve, Cwe, Category, Challenge, Exploit, Flag, Writeup
+from .forms import WriteupForm
 
 # Create your views here.
 def index(request):
@@ -68,67 +69,67 @@ class CweListView(ListView):
     ordering = ['cwe_id']
     paginate_by = 10
 
-class CveUpdateView(UpdateView):
-    model = Cve
-    template_name = 'cve_form.html'
-    fields = "__all__"
+# class CveUpdateView(UpdateView):
+    # model = Cve
+    # template_name = 'cve_form.html'
+    # fields = "__all__"
 
-class CveDeleteView(DeleteView):
-    model = Cve
-    template_name = 'cve_confirm_delete.html'
-    success_url = reverse_lazy('cves')
+# class CveDeleteView(DeleteView):
+    # model = Cve
+    # template_name = 'cve_confirm_delete.html'
+    # success_url = reverse_lazy('cves')
 
 class CweDetailView(DetailView):
     model = Cwe
     template_name = 'cwe_detail.html'
     context_object_name = 'cwe'
-class CweUpdateView(UpdateView):
-    model = Cwe
-    template_name = 'cwe_form.html'
-    fields = "__all__"
-class CweDeleteView(DeleteView):
-    model = Cwe
-    template_name = 'cwe_confirm_delete.html'
-    success_url = reverse_lazy('cwes')
-class CweCreateView(CreateView):
-    model = Cwe
-    template_name = 'cwe_form.html'
-    fields = "__all__"
+# class CweUpdateView(UpdateView):
+    # model = Cwe
+    # template_name = 'cwe_form.html'
+    # fields = "__all__"
+# class CweDeleteView(DeleteView):
+    # model = Cwe
+    # template_name = 'cwe_confirm_delete.html'
+    # success_url = reverse_lazy('cwes')
+# class CweCreateView(CreateView):
+    # model = Cwe
+    # template_name = 'cwe_form.html'
+    # fields = "__all__"
 
-class CategoryCreateView(CreateView):
-    model = Category
-    template_name = 'category_form.html'
-    fields = "__all__"
+# class CategoryCreateView(CreateView):
+    # model = Category
+    # template_name = 'category_form.html'
+    # fields = "__all__"
 
-class CategoryUpdateView(UpdateView):
-    model = Category
-    template_name = 'category_form.html'
-    fields = "__all__"
+# class CategoryUpdateView(UpdateView):
+    # model = Category
+    # template_name = 'category_form.html'
+    # fields = "__all__"
 
-class CategoryDeleteView(DeleteView):
-    model = Category
-    template_name = 'category_confirm_delete.html'
-    success_url = reverse_lazy('categories')
+# class CategoryDeleteView(DeleteView):
+    # model = Category
+    # template_name = 'category_confirm_delete.html'
+    # success_url = reverse_lazy('categories')
 
-class ChallengeCreateView(CreateView):
-    model = Challenge
-    template_name = 'challenge_form.html'
-    fields = "__all__"
+# class ChallengeCreateView(CreateView):
+    # model = Challenge
+    # template_name = 'challenge_form.html'
+    # fields = "__all__"
 
-class ChallengeUpdateView(UpdateView):
-    model = Challenge
-    template_name = 'challenge_form.html'
-    fields = "__all__"
+# class ChallengeUpdateView(UpdateView):
+    # model = Challenge
+    # template_name = 'challenge_form.html'
+    # fields = "__all__"
 
-class ChallengeDeleteView(DeleteView):
-    model = Challenge
-    template_name = 'challenge_confirm_delete.html'
-    success_url = reverse_lazy('challenges')
+# class ChallengeDeleteView(DeleteView):
+    # model = Challenge
+    # template_name = 'challenge_confirm_delete.html'
+    # success_url = reverse_lazy('challenges')
 
-class CveCreateView(CreateView):
-    model = Cve
-    template_name = 'cve_form.html'
-    fields = "__all__"
+# class CveCreateView(CreateView):
+    # model = Cve
+    # template_name = 'cve_form.html'
+    # fields = "__all__"
 
 class ExploitListView(ListView):
     model = Exploit
@@ -142,17 +143,33 @@ class ExploitDetailView(DetailView):
     template_name = 'exploit_detail.html'
     context_object_name = 'exploit'
 
-class ExploitCreateView(CreateView):
-    model = Exploit
-    template_name = 'exploit_form.html'
-    fields = "__all__"
+class WriteupCreateView(CreateView):
+    model = Writeup
+    template_name = 'writeup_form.html'
+    form_class = WriteupForm
+    success_url = reverse_lazy('index')
 
-class ExploitUpdateView(UpdateView):
-    model = Exploit
-    template_name = 'exploit_form.html'
-    fields = "__all__"
-class ExploitDeleteView(DeleteView):
-    model = Exploit
-    template_name = 'exploit_confirm_delete.html'
-    success_url = reverse_lazy('exploits')
+class WriteupEditView(UpdateView):
+    model = Writeup
+    template_name = 'writeup_form.html'
+    form_class = WriteupForm
+    success_url = reverse_lazy('index')
+class WriteupDeleteView(DeleteView):
+    model = Writeup
+    template_name = 'writeup_delete_confirm.html'
+    success_url = reverse_lazy('index')
+
+# class ExploitCreateView(CreateView):
+    # model = Exploit
+    # template_name = 'exploit_form.html'
+    # fields = "__all__"
+
+# class ExploitUpdateView(UpdateView):
+    # model = Exploit
+    # template_name = 'exploit_form.html'
+    # fields = "__all__"
+# class ExploitDeleteView(DeleteView):
+    # model = Exploit
+    # template_name = 'exploit_confirm_delete.html'
+    # success_url = reverse_lazy('exploits')
 

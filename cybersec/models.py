@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Cve(models.Model):
-    cve_id = models.CharField(max_length=100)
+    cve_id = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
     cvss = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(10)])
     published_date = models.DateField(blank=True, null=True)
@@ -20,7 +20,7 @@ class Cve(models.Model):
         return f"{self.cve_id}"
 
 class Cwe(models.Model):
-    cwe_id = models.CharField(max_length=100)
+    cwe_id = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     class Meta:
@@ -31,7 +31,7 @@ class Cwe(models.Model):
         return f"{self.cwe_id}: {self.name}"
 
 class Exploit(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     exploit_code = models.TextField()
     cve = models.ManyToManyField('Cve')
@@ -75,7 +75,7 @@ class Challenge(models.Model):
 
 class Flag(models.Model):
     challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE, related_name='flags')
-    flag = models.CharField(max_length=100)
+    flag = models.CharField(max_length=100, unique=True)
     hint = models.TextField(blank=True, null=True)
     class Meta:
         ordering = ['flag']
@@ -86,7 +86,7 @@ class Flag(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     class Meta:
         ordering = ['name']
@@ -94,6 +94,15 @@ class Category(models.Model):
         verbose_name_plural  = 'Categories'
     def __str__(self):
         return f"{self.name}"
+
+class Writeup(models.Model):
+    challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE, related_name='writeups')
+    writeup = models.TextField()
+    class Meta:
+        verbose_name = 'Writeup'
+        verbose_name_plural  = 'Writeups'
+    def __str__(self):
+        return f"{self.challenge} - {' '.join(self.writeup.split()[:5])}..."
 
 # class containing information for k8s manifest
 # class Manifest(models.Model):
