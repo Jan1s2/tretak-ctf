@@ -33,7 +33,7 @@
     <ul>
         {% for writeup in challenge.writeups.all %}
         <li>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#writeupModal_{{ writeup.id }}">{{ writeup.title }}</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#writeupModal_{{ writeup.id }}">{{ writeup }}</a>
         </li>
         {% endfor %}
     </ul>
@@ -66,7 +66,7 @@
     <div id="alertBox" class="alert" style="display: none;"></div>
 
     {% for flag in challenge.flags.all %}
-    <div class="flag-section">
+    <div class="flag-section mt-3">
         <h3>Flag {{ flag.id }}</h3>
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#hintModal_{{ flag.id }}">

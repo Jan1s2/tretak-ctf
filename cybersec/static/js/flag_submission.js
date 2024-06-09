@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
                     if (response.valid) {
-                        alertBox.className = 'alert alert-success';
+                        alertBox.className = 'alert alert-success mt-3 mb-3';
                         alertBox.innerText = 'Correct flag!';
                     } else {
-                        alertBox.className = 'alert alert-danger';
+                        alertBox.className = 'alert alert-danger mt-3 mb-3';
                         alertBox.innerText = 'Incorrect flag!';
                     }
                     alertBox.style.display = 'block';
