@@ -41,9 +41,9 @@ class Exploit(models.Model):
         return f"{self.name}"
 
 class Challenge(models.Model):
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    cve = models.ManyToManyField('Cve')
-    cwe = models.ManyToManyField('Cwe')
+    category = models.ForeignKey('Category', on_delete=models.RESTRICT, related_name='challenges')
+    cve = models.ManyToManyField('Cve', blank=True)
+    cwe = models.ManyToManyField('Cwe', blank=True)
     image = models.ImageField(upload_to='images/', verbose_name='Image', null=True, blank=True)
     score = models.PositiveIntegerField()
     difficulty = models.PositiveIntegerField()
@@ -59,7 +59,7 @@ class Challenge(models.Model):
         return f"{self.name}"
 
 class Flag(models.Model):
-    challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE)
+    challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE, related_name='flags')
     flag = models.CharField(max_length=100)
     hint = models.TextField(blank=True, null=True)
     class Meta:
@@ -81,13 +81,13 @@ class Category(models.Model):
         return f"{self.name}"
 
 # class containing information for k8s manifest
-class Manifest(models.Model):
-    name = models.CharField(max_length=100)
-    challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE)
-    manifest = models.TextField()
-    class Meta:
-        ordering = ['name']
-        verbose_name = 'Manifest'
-        verbose_name = 'Manifests'
-    def __str__(self):
-        return f"{self.name}"
+# class Manifest(models.Model):
+    # name = models.CharField(max_length=100)
+    # challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE)
+    # manifest = models.TextField()
+    # class Meta:
+        # ordering = ['name']
+        # verbose_name = 'Manifest'
+        # verbose_name = 'Manifests'
+    # def __str__(self):
+        # return f"{self.name}"

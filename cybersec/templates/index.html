@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 mt-3 mb-3">
+            <h2 class="bg-info text-light text-center text-uppercase p-3">{{ nadpis }}</h2>
+            {% for category in categories %}
+            <div class="row mb-3">
+                <div class="col-lg-3">
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-fluid">
+                </div>
+                <div class="col-lg-9">
+                    <p>{% for challenge in category.challenges.all %}<span class="badge badge-light">{{ challenge.name }}</span>{% endfor %}</p>
+                    <h3><a href="#">{{ category.name }}</a></h3>
+                    <p>{{ category.description|truncatechars:40 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% comment %}<div class="col-lg-4 bg-light mt-3 mb-3">{% endcomment %}
+            {% comment %}<h2 class="bg-secondary text-light text-center p-3">Přehled žánrů</h2>{% endcomment %}
+            {% comment %}<ul class="list-group">{% endcomment %}
+            {% comment %}{% for zanr in zanry %}{% endcomment %}
+                {% comment %}{% if zanr.nazev == nadpis %}{% endcomment %}
+                {% comment %}<li class="list-group-item active">{{ zanr.nazev }} <span class="badge badge-info">{{ zanr.kniha_set.count }}</span></li>{% endcomment %}
+                {% comment %}{% else %}{% endcomment %}
+                {% comment %}<li class="list-group-item"><a href="#">{{ zanr.nazev }}</a> <span class="badge badge-info">{{ zanr.kniha_set.count }}</span></li>{% endcomment %}
+                {% comment %}{% endif %}{% endcomment %}
+            {% comment %}{% endfor %}{% endcomment %}
+            {% comment %}</ul>{% endcomment %}
+        {% comment %}</div>{% endcomment %}
+    </div>
+{% endblock %}
