@@ -8,3 +8,6 @@ class WriteupForm(forms.ModelForm):
     class Meta:
         model = Writeup
         fields = "__all__"
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))

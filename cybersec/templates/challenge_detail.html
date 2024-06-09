@@ -28,6 +28,41 @@
     </ul>
     {% endif %}
 
+    {% if challenge.writeups.exists %}
+    <h3>Writeups</h3>
+    <ul>
+        {% for writeup in challenge.writeups.all %}
+        <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#writeupModal_{{ writeup.id }}">{{ writeup.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Modals for each writeup -->
+    {% for writeup in challenge.writeups.all %}
+    <div class="modal fade" id="writeupModal_{{ writeup.id }}" tabindex="-1" aria-labelledby="writeupModalLabel_{{ writeup.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="writeupModalLabel_{{ writeup.id }}">Writeup: {{ writeup.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ writeup.writeup }}
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'writeup-edit' writeup.id %}" class="btn btn-primary">Edit</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Button to create a new writeup -->
+    <button type="button" class="btn btn-success mt-3" onclick="window.location.href='{% url 'writeup_create' %}'">Create New Writeup</button>
+
     <div id="alertBox" class="alert" style="display: none;"></div>
 
     {% for flag in challenge.flags.all %}
