@@ -18,6 +18,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ challenge.title }}</h5>
                         <p class="card-text">{{ challenge.description }}</p>
+                        {% if challenge.image %}
+                        <img src="{{ challenge.image.url }}" class="img-fluid" alt="{{ challenge.title }}">
+                        {% endif %}
                         <a href="{% url 'challenge-detail' challenge.id %}" class="btn btn-primary">View Challenge</a>
                     </div>
                 </div>

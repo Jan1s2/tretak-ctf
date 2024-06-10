@@ -9,6 +9,9 @@
         <li>Score: {{ challenge.score }}</li>
         <li>Difficulty: {{ challenge.difficulty }}</li>
     </ul>
+    {% if challenge.image %}
+    <img src="{{ challenge.image.url }}" class="img-fluid" alt="{{ challenge.name }}">
+    {% endif %}
 
     {% if challenge.cve.exists %}
     <h3>CVEs</h3>
