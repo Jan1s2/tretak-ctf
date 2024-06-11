@@ -267,7 +267,7 @@
     "pk": 7,
     "fields": {
       "challenge": 6,
-      "flag": "yoda{powerful_you_have_become",
+      "flag": "yoda{powerful_you_have_become}",
       "hint": "I have this one"
     }
   },
