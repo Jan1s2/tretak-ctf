@@ -13,3 +13,15 @@ The system is based on the following model:
 - Writeup with content
 - Flags with flags and hints
 - At the moment users can only create, edit or delete a writeup for a challenge
+
+## Installation
+
+```
+git clone https://github.com/jan1s2/tretak-ctf.git
+cd tretak-ctf
+python -m venv .venv
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py loaddata initdata.json
+python manage.py runserver
+```
